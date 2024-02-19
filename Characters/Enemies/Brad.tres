@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://v8gmhljfrpcv"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dvdd7rlj3qpsv"]
 
 [ext_resource type="Script" path="res://Characters/Enemies/BaseEnemy.gd" id="1_5h2yt"]
 [ext_resource type="Texture2D" uid="uid://b0b6iu5u5korv" path="res://Assets/final.png" id="2_rw37a"]

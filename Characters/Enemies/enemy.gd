@@ -10,6 +10,6 @@ func _on_player_detection_body_entered(body):
 		var battleMenu = get_node("../Battle")
 		battleMenu.position = body.position
 		battleMenu.show()
-		#battleMenu.get_node("Camera2D").enabled = true
-		#body.get_node("Camera2D").enabled = false
+		battleMenu.get_node("Camera2D").enabled = true
+		body.get_node("Camera2D").enabled = false
 		

@@ -1,9 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckqk5vqwbwh75"]
+[gd_scene load_steps=13 format=3 uid="uid://ckqk5vqwbwh75"]
 
+[ext_resource type="Script" path="res://Characters/Enemies/BaseEnemy.gd" id="2_nlacl"]
+[ext_resource type="Texture2D" uid="uid://b0b6iu5u5korv" path="res://Assets/final.png" id="3_7byca"]
 [ext_resource type="Texture2D" uid="uid://d0gp5vkftwqx0" path="res://Assets/Rocks.png" id="3_msuqa"]
 [ext_resource type="Script" path="res://Logic/Battle.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://bee1q4onaedc3" path="res://Assets/Squares/GreenSquare.png" id="4_qynu4"]
-[ext_resource type="Resource" uid="uid://v8gmhljfrpcv" path="res://Characters/Enemies/Brad.tres" id="5"]
+
+[sub_resource type="Resource" id="Resource_675ml"]
+script = ExtResource("2_nlacl")
+name = "Brad"
+texture = ExtResource("3_7byca")
+health = 35
+damage = 20
 
 [sub_resource type="Animation" id="10"]
 length = 0.001
@@ -100,16 +108,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
-enemy = ExtResource("5")
+enemy = SubResource("Resource_675ml")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_right = 247.0
-offset_bottom = 752.0
+offset_left = -119.0
+offset_top = -157.0
+offset_right = 127.0
+offset_bottom = 595.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_msuqa")
@@ -251,6 +260,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="ActionsPanel/Actions/Attack" to="." method="_on_Attack_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ta7xotwec86m"]
+[gd_scene load_steps=10 format=3 uid="uid://ta7xotwec86m"]
 
 [ext_resource type="PackedScene" uid="uid://ikjnwe5ika5g" path="res://Levels/room.tscn" id="1_gh52r"]
 [ext_resource type="PackedScene" uid="uid://dpq45ae0k6kw2" path="res://Characters/Player/player.tscn" id="2_iqsw4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Levels/PauseButton.gd" id="4_lptgm"]
 [ext_resource type="PackedScene" uid="uid://rokaml3a3uao" path="res://Characters/Enemies/enemy.tscn" id="5_5qbk0"]
 [ext_resource type="PackedScene" uid="uid://ckqk5vqwbwh75" path="res://Logic/Battle.tscn" id="5_tuh1x"]
+[ext_resource type="Resource" uid="uid://dvdd7rlj3qpsv" path="res://Characters/Enemies/Brad.tres" id="7_l7urv"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_ek4mt"]
 device = -1
@@ -20,7 +21,7 @@ events = [SubResource("InputEventKey_ek4mt")]
 position = Vector2(-1, 3)
 
 [node name="Player" parent="." instance=ExtResource("2_iqsw4")]
-position = Vector2(274, 329)
+position = Vector2(158, 344)
 scale = Vector2(0.2, 0.2)
 
 [node name="PauseButton" type="Button" parent="Player"]
@@ -37,16 +38,17 @@ visible = false
 follow_viewport_enabled = false
 
 [node name="Enemy" parent="." instance=ExtResource("5_5qbk0")]
-position = Vector2(981, 146)
+position = Vector2(974, 348)
 scale = Vector2(0.5, 0.5)
 
 [node name="Battle" parent="." instance=ExtResource("5_tuh1x")]
 anchors_preset = -1
-offset_left = 17.0
-offset_top = 41.0
-offset_right = 1200.0
-offset_bottom = 732.0
+offset_left = 1602.0
+offset_top = 534.0
+offset_right = 2755.0
+offset_bottom = 1181.0
 grow_horizontal = 1
 grow_vertical = 1
+enemy = ExtResource("7_l7urv")
 
 [connection signal="pressed" from="Player/PauseButton" to="Player/Pause" method="_on_pause_button_pressed"]

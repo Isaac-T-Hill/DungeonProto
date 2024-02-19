@@ -60,8 +60,8 @@ func enemy_turn():
 func _on_Run_pressed():
 	display_text("Got away safely!")
 	await(textbox_closed)
-	#get_node("Camera2D").enabled = false
-	#get_node("../Player/Camera2D").enabled = true
+	get_node("Camera2D").enabled = false
+	get_node("../Player/Camera2D").enabled = true
 	self.hide()
 	display_text("A wild %s appears!" % enemy.name.to_upper())
 	await(textbox_closed) 
@@ -86,6 +86,10 @@ func _on_Attack_pressed():
 		await(textbox_closed)
 		
 		$AnimationPlayer.play("enemy_died")
+		
+		get_node("Camera2D").enabled = false
+		get_node("../Player/Camera2D").enabled = true
+	
 		self.hide()
 
 	enemy_turn()
