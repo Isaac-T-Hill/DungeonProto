@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpq45ae0k6kw2"]
+
+[ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_qj1jq"]
+[ext_resource type="Texture2D" uid="uid://brwt327md08wn" path="res://Assets/Minotaur.png" id="2_7dhti"]
+[ext_resource type="PackedScene" uid="uid://dx5von544ant2" path="res://Characters/inventory.tscn" id="3_jdqb5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxt5q"]
+size = Vector2(256, 256)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qj1jq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sxt5q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-40, -4)
+scale = Vector2(1.12292, 0.423333)
+texture = ExtResource("2_7dhti")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Inventory" parent="." instance=ExtResource("3_jdqb5")]

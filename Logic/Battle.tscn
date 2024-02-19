@@ -1,0 +1,256 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckqk5vqwbwh75"]
+
+[ext_resource type="Texture2D" uid="uid://d0gp5vkftwqx0" path="res://Assets/Rocks.png" id="3_msuqa"]
+[ext_resource type="Script" path="res://Logic/Battle.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://bee1q4onaedc3" path="res://Assets/Squares/GreenSquare.png" id="4_qynu4"]
+[ext_resource type="Resource" uid="uid://v8gmhljfrpcv" path="res://Logic/Dragon.tres" id="5"]
+
+[sub_resource type="Animation" id="10"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="9"]
+resource_name = "enemy_damaged"
+length = 0.6
+
+[sub_resource type="Animation" id="13"]
+resource_name = "enemy_died"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyContainer:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="12"]
+resource_name = "mini_shake"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -2), Vector2(2, 2), Vector2(-2, 2), Vector2(1, -2), Vector2(-3, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="11"]
+resource_name = "shake"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-7, -7), Vector2(8, 8), Vector2(-5, 6), Vector2(5, -4), Vector2(-7, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6jtb"]
+_data = {
+"RESET": SubResource("10"),
+"enemy_damaged": SubResource("9"),
+"enemy_died": SubResource("13"),
+"mini_shake": SubResource("12"),
+"shake": SubResource("11")
+}
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4")
+enemy = ExtResource("5")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 247.0
+offset_bottom = 752.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_msuqa")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="EnemyContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.389
+anchor_top = 0.279
+anchor_right = 0.611
+anchor_bottom = 0.721
+offset_left = -0.128021
+offset_top = -0.292007
+offset_right = 0.12915
+offset_bottom = 0.291992
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="EnemyContainer"]
+layout_mode = 2
+step = 1.0
+value = 50.0
+
+[node name="Label" type="Label" parent="EnemyContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "HP: 25/50"
+
+[node name="Enemy" type="TextureRect" parent="EnemyContainer"]
+layout_mode = 2
+texture = ExtResource("4_qynu4")
+expand_mode = 5
+
+[node name="PlayerPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -74.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayerData" type="HBoxContainer" parent="PlayerPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PlayerPanel/PlayerData"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PLAYER"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/PlayerData"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 50.0
+step = 1.0
+value = 25.0
+
+[node name="Label" type="Label" parent="PlayerPanel/PlayerData/ProgressBar"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "HP: 25/50"
+
+[node name="ActionsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -575.0
+offset_right = 576.0
+offset_bottom = 69.0
+grow_horizontal = 2
+
+[node name="Actions" type="HBoxContainer" parent="ActionsPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="Attack" type="Button" parent="ActionsPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Attack"
+
+[node name="Defend" type="Button" parent="ActionsPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Defend"
+
+[node name="Run" type="Button" parent="ActionsPanel/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_default_cursor_shape = 2
+text = "Run"
+
+[node name="Textbox" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 114.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Textbox"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "A DRAGON appears!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ticker" type="Label" parent="Textbox"]
+layout_mode = 0
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = ">"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g6jtb")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ActionsPanel/Actions/Attack" to="." method="_on_Attack_pressed"]
+[connection signal="pressed" from="ActionsPanel/Actions/Defend" to="." method="_on_Defend_pressed"]
+[connection signal="pressed" from="ActionsPanel/Actions/Run" to="." method="_on_Run_pressed"]

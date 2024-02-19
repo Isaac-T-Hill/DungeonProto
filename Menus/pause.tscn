@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cre6of5ew8345"]
+
+[ext_resource type="Script" path="res://Menus/pause.gd" id="1_n7fjn"]
+
+[node name="Pause" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_n7fjn")
+
+[node name="Play" type="Button" parent="."]
+offset_left = 483.0
+offset_top = 147.0
+offset_right = 749.0
+offset_bottom = 248.0
+text = "Continue"
+
+[node name="Main" type="Button" parent="."]
+offset_left = 485.0
+offset_top = 274.0
+offset_right = 754.0
+offset_bottom = 376.0
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 487.0
+offset_top = 403.0
+offset_right = 756.0
+offset_bottom = 505.0
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

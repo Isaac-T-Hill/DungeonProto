@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhesish6s7cyf"]
+
+[ext_resource type="Script" path="res://Menus/Play.gd" id="1_t66x2"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Play" type="Button" parent="."]
+offset_left = 483.0
+offset_top = 147.0
+offset_right = 749.0
+offset_bottom = 248.0
+text = "Play"
+script = ExtResource("1_t66x2")
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 485.0
+offset_top = 311.0
+offset_right = 754.0
+offset_bottom = 413.0
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
+[connection signal="pressed" from="Quit" to="Play" method="_on_quit_pressed"]

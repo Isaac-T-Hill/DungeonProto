@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://ta7xotwec86m"]
+
+[ext_resource type="PackedScene" uid="uid://ikjnwe5ika5g" path="res://Levels/room.tscn" id="1_gh52r"]
+[ext_resource type="PackedScene" uid="uid://dpq45ae0k6kw2" path="res://Characters/Player/player.tscn" id="2_iqsw4"]
+[ext_resource type="PackedScene" uid="uid://cre6of5ew8345" path="res://Menus/pause.tscn" id="4_i603m"]
+[ext_resource type="Script" path="res://Levels/PauseButton.gd" id="4_lptgm"]
+[ext_resource type="PackedScene" uid="uid://rokaml3a3uao" path="res://Characters/Enemies/enemy.tscn" id="5_5qbk0"]
+[ext_resource type="PackedScene" uid="uid://ckqk5vqwbwh75" path="res://Logic/Battle.tscn" id="5_tuh1x"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ek4mt"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_0tapu"]
+events = [SubResource("InputEventKey_ek4mt")]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Room" parent="." instance=ExtResource("1_gh52r")]
+position = Vector2(-1, 3)
+
+[node name="Player" parent="." instance=ExtResource("2_iqsw4")]
+position = Vector2(274, 329)
+scale = Vector2(0.2, 0.2)
+
+[node name="PauseButton" type="Button" parent="Player"]
+offset_left = -37080.0
+offset_top = -8638.0
+offset_right = -37072.0
+offset_bottom = -8630.0
+shortcut = SubResource("Shortcut_0tapu")
+script = ExtResource("4_lptgm")
+
+[node name="Pause" parent="Player" instance=ExtResource("4_i603m")]
+process_mode = 2
+visible = false
+follow_viewport_enabled = false
+
+[node name="Enemy" parent="." instance=ExtResource("5_5qbk0")]
+position = Vector2(981, 146)
+scale = Vector2(0.5, 0.5)
+
+[node name="Battle" parent="." instance=ExtResource("5_tuh1x")]
+anchors_preset = -1
+offset_left = 17.0
+offset_top = 41.0
+offset_right = 1200.0
+offset_bottom = 732.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="pressed" from="Player/PauseButton" to="Player/Pause" method="_on_pause_button_pressed"]
