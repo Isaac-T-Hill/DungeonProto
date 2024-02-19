@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d0gp5vkftwqx0" path="res://Assets/Rocks.png" id="3_msuqa"]
 [ext_resource type="Script" path="res://Logic/Battle.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://bee1q4onaedc3" path="res://Assets/Squares/GreenSquare.png" id="4_qynu4"]
-[ext_resource type="Resource" uid="uid://v8gmhljfrpcv" path="res://Logic/Brad.tres" id="5"]
+[ext_resource type="Resource" uid="uid://v8gmhljfrpcv" path="res://Characters/Enemies/Brad.tres" id="5"]
 
 [sub_resource type="Animation" id="10"]
 length = 0.001
@@ -140,6 +140,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "HP: 25/50"
 
 [node name="Enemy" type="TextureRect" parent="EnemyContainer"]
