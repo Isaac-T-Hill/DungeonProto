@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ta7xotwec86m"]
+[gd_scene load_steps=9 format=3 uid="uid://ta7xotwec86m"]
 
 [ext_resource type="PackedScene" uid="uid://ikjnwe5ika5g" path="res://Levels/room.tscn" id="1_gh52r"]
 [ext_resource type="PackedScene" uid="uid://dpq45ae0k6kw2" path="res://Characters/Player/player.tscn" id="2_iqsw4"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Levels/PauseButton.gd" id="4_lptgm"]
 [ext_resource type="PackedScene" uid="uid://rokaml3a3uao" path="res://Characters/Enemies/enemy.tscn" id="5_5qbk0"]
 [ext_resource type="PackedScene" uid="uid://ckqk5vqwbwh75" path="res://Logic/Battle.tscn" id="5_tuh1x"]
-[ext_resource type="Resource" uid="uid://dvdd7rlj3qpsv" path="res://Characters/Enemies/Brad.tres" id="7_l7urv"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_ek4mt"]
 device = -1
@@ -49,6 +48,5 @@ offset_right = 2755.0
 offset_bottom = 1181.0
 grow_horizontal = 1
 grow_vertical = 1
-enemy = ExtResource("7_l7urv")
 
 [connection signal="pressed" from="Player/PauseButton" to="Player/Pause" method="_on_pause_button_pressed"]
