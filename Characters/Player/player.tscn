@@ -1,15 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpq45ae0k6kw2"]
+[gd_scene load_steps=7 format=3 uid="uid://dpq45ae0k6kw2"]
 
 [ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_qj1jq"]
 [ext_resource type="Texture2D" uid="uid://brwt327md08wn" path="res://Assets/Minotaur.png" id="2_7dhti"]
+[ext_resource type="PackedScene" uid="uid://dr76ive0ksiik" path="res://Characters/Player/player_camera.tscn" id="2_s5y83"]
 [ext_resource type="PackedScene" uid="uid://dx5von544ant2" path="res://Characters/inventory.tscn" id="3_jdqb5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_epfq2"]
 radius = 133.0
 height = 336.0
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f8ixl"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_qj1jq")
+player_camera = ExtResource("2_s5y83")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 128)
@@ -20,6 +28,7 @@ position = Vector2(-2.99998, 63)
 scale = Vector2(0.552764, 0.453398)
 texture = ExtResource("2_7dhti")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Inventory" parent="." instance=ExtResource("3_jdqb5")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_f8ixl")

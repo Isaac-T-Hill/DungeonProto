@@ -88,7 +88,7 @@ func _on_Attack_pressed():
 		$AnimationPlayer.play("enemy_died")
 		
 		get_node("Camera2D").enabled = false
-		get_node("../Player/Camera2D").enabled = true
+		#get_node("../Player/Camera2D").enabled = true
 	
 		self.hide()
 

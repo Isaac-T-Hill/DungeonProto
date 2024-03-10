@@ -1,23 +1,80 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhesish6s7cyf"]
+[gd_scene load_steps=3 format=3 uid="uid://bhesish6s7cyf"]
 
 [ext_resource type="Script" path="res://Menus/Play.gd" id="1_t66x2"]
+[ext_resource type="PackedScene" uid="uid://ta7xotwec86m" path="res://Levels/world.tscn" id="2_s0732"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Node" type="Node" node_paths=PackedStringArray("level_container", "ip_line_edit", "host_button", "start_button", "join_button", "status_label", "ui")]
+script = ExtResource("1_t66x2")
+level_container = NodePath("Level")
+ip_line_edit = NodePath("Menu/UI/LineEdit")
+host_button = NodePath("Menu/UI/Host")
+start_button = NodePath("Menu/UI/Start")
+join_button = NodePath("Menu/UI/Join")
+status_label = NodePath("Menu/UI/Label")
+level_scene = ExtResource("2_s0732")
+ui = NodePath("Menu/UI")
 
-[node name="Play" type="Button" parent="."]
+[node name="Level" type="Node" parent="."]
+
+[node name="LevelSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Levels/world.tscn")
+spawn_path = NodePath("../Level")
+spawn_limit = 1
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UI" type="CanvasLayer" parent="Menu"]
+
+[node name="Host" type="Button" parent="Menu/UI"]
 offset_left = 483.0
 offset_top = 147.0
 offset_right = 749.0
 offset_bottom = 248.0
-text = "Play"
-script = ExtResource("1_t66x2")
+text = "Host"
 
-[node name="Quit" type="Button" parent="."]
-offset_left = 485.0
-offset_top = 311.0
-offset_right = 754.0
-offset_bottom = 413.0
+[node name="Join" type="Button" parent="Menu/UI"]
+offset_left = 484.0
+offset_top = 273.0
+offset_right = 750.0
+offset_bottom = 374.0
+text = "Join"
+
+[node name="Quit" type="Button" parent="Menu/UI"]
+offset_left = 479.0
+offset_top = 412.0
+offset_right = 748.0
+offset_bottom = 514.0
 text = "Quit"
 
-[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
-[connection signal="pressed" from="Quit" to="Play" method="_on_quit_pressed"]
+[node name="LineEdit" type="LineEdit" parent="Menu/UI"]
+offset_left = 765.0
+offset_top = 277.0
+offset_right = 1147.0
+offset_bottom = 368.0
+text = "127.0.0.1"
+placeholder_text = "Enter an IP Address..."
+
+[node name="Start" type="Button" parent="Menu/UI"]
+visible = false
+offset_left = 485.0
+offset_top = 148.0
+offset_right = 751.0
+offset_bottom = 249.0
+text = "Start
+"
+
+[node name="Label" type="Label" parent="Menu/UI"]
+offset_left = 765.0
+offset_top = 414.0
+offset_right = 1144.0
+offset_bottom = 516.0
+text = "Not Connected!"
+
+[connection signal="pressed" from="Menu/UI/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Menu/UI/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="Menu/UI/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/UI/Start" to="." method="_on_start_pressed"]
